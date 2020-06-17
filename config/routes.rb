@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   get 'destinations/index'
   get 'destinations/create'
   get 'destinations/destroy'
