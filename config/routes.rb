@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
-  devise_for :customers
-  scope module: :customer do
+  devise_for :admins, controllers: {
+    sessions:      'admin/sessions',
+    passwords:     'admin/passwords',
+    registrations: 'admin/registrations'
+  }
+  devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+    registrations: 'customers/registrations'
+  }
+
+
+  scope module: :customers do
     #顧客トップページのルートパス
     root 'homes#top'
     #顧客の商品関連
@@ -22,7 +32,7 @@ Rails.application.routes.draw do
     resources :destinations, except: [:new, :show]
   end
 
-  namespace :admin do
+  namespace :admins do
     get 'top' => 'homes#top'
     resources :products, only: [:index,:new,:create,:show,:edit,:update]
     resources :genres, only: [:index,:create,:edit,:update]
