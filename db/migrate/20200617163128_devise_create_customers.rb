@@ -39,7 +39,6 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :postcode, null: false
       t.string :address, null: false
       t.boolean :is_valid, null: false, default: true
-      t.timestamps null: false
 
       t.timestamps null: false
     end
