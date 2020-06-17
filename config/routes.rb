@@ -1,32 +1,32 @@
 Rails.application.routes.draw do
+  devise_for :customers
   devise_for :admins
-  get 'destinations/index'
-  get 'destinations/create'
-  get 'destinations/destroy'
-  get 'destinations/edit'
-  get 'destinations/update'
-  get 'customers/show'
-  get 'customers/delete_account'
-  get 'customers/Invalid'
-  get 'customers/edit'
-  get 'customers/update'
-  get 'orders/new'
-  get 'orders/confirm'
-  get 'orders/create'
-  get 'orders/thanks'
-  get 'cart_products/create'
-  get 'cart_products/index'
-  get 'cart_products/update'
-  get 'cart_products/destroy'
-  get 'cart_products/empty'
-  get 'products/index'
-  get 'products/show'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  scope module: :customer do
+    #顧客トップページのルートパス
+    root 'homes#top'
+    #顧客の商品関連
+    resources :products, only: [:index, :show]
+    #カート内商品
+    resources :cart_products, only: [:index, :create, :update, :destroy]
+    delete 'cart_products' => 'cart_products#empty', as: :empty
+    #顧客の注文関連
+    resources :orders, only: [:index, :new, :create, :show]
+    post 'orders/confirm' => 'orders#confirm', as: :orders_confirm
+    get 'orders/thanks' => 'orders#thanks', as: :orders_thanks
+    #顧客情報関連
+    resource :customers, only: [:show, :edit, :update]
+    get 'delete_account' => 'customets#delete_account', as: :delete_account
+    patch 'delete_account' => 'customets#invalid', as: :invalid
+    #顧客の配送先関連
+    resources :destinations, except: [:new, :show]
+  end
+
   namespace :admin do
-    get 'homes/top'
+    get 'top' => 'homes#top'
     resources :products, only: [:index,:new,:create,:show,:edit,:update]
     resources :genres, only: [:index,:create,:edit,:update]
-    resources :genres, only: [:index,:show,:edit,:update]
+    resources :customers, only: [:index,:show,:edit,:update]
     resources :orders, only: [:index,:show,:update]
     resources :order_products, only: [:update]
   end
