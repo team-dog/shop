@@ -5,7 +5,8 @@
 		<div class="container">
 			<ul class="nav-items">
 				<li>
-					<a class="nav-logo" href="#">NaganoCake</a>
+					<%= link_to 'NaganoCake', root_path, class: "nav-logo" %>
+					<!-- <a class="nav-logo" href="#">NaganoCake</a> -->
 				</li>
 				<li class="nav-item">
 					<a class="nav-link btn btn-primary" href="#">マイページ</a>
@@ -29,19 +30,20 @@
 		<div class="container">
 			<ul class="nav-items">
 				<li>
-					<a class="nav-logo" href="#">NaganoCake</a>
+					<%= link_to 'NaganoCake', root_path, class: "nav-logo" %>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link btn btn-primary" href="#">商品一覧</a>
+					<%= link_to '商品一覧', products_path, class: "nav-link btn btn-primary" %>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link btn btn-primary" href="#">新規登録</a>
+					<%= link_to '新規登録', new_customer_session_path, class: "nav-link btn btn-primary" %>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link btn btn-primary" href="#">ログイン</a>
+					<%= link_to 'ログイン', new_customer_registration_path, class: "nav-link btn btn-primary" %>
 				</li>
 			</ul>
 		</div>
 	</nav>
 	<% end %>
+
 </header><!-- /header -->
