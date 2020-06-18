@@ -1,0 +1,47 @@
+<header id="header" class="header">
+	<!-- ログインしている顧客のヘッダー -->
+	<% if customer_signed_in? %>
+	<nav class="nav">
+		<div class="container">
+			<ul class="nav-items">
+				<li>
+					<a class="nav-logo" href="#">NaganoCake</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link btn btn-primary" href="#">マイページ</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link btn btn-primary" href="#">商品一覧</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link btn btn-primary" href="#">カート</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link btn btn-primary" href="#">ログアウト</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- 未ログイン -->
+	<% else %>
+	<nav class="nav">
+		<div class="container">
+			<ul class="nav-items">
+				<li>
+					<a class="nav-logo" href="#">NaganoCake</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link btn btn-primary" href="#">商品一覧</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link btn btn-primary" href="#">新規登録</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link btn btn-primary" href="#">ログイン</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<% end %>
+</header><!-- /header -->
