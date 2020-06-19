@@ -1,3 +1,71 @@
 // Place all the styles related to the customers::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.genre-index {
+	&-wrapper {
+		height: 300px;
+		width: 80%;
+		border: 1px solid #000;
+	}
+
+	&-title {
+		padding: 10px;
+		text-align: center;
+		line-height: 18px;
+		border-bottom: 1px solid #000;
+	}
+
+	&-items {
+		& > ul {
+			margin-right: auto;
+		}
+	}
+
+	&-item {
+		line-height: 40px;
+	}
+}
+
+.main-view {
+	background: image-url('main-view-pic.jpg');
+	background-size: cover;
+	height: 250px;
+	width: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&-text {
+		background-color: #fff;
+		padding: 5px 10px;
+		line-height: 30px;
+	}
+}
+
+.favorite-wrapper {
+	& > h2 {
+		padding: 20px 0;
+	}
+}
+
+.favorite-products {
+	display: flex;
+}
+
+.favorite-product {
+	margin-right: 10px;
+	width: 25%;
+	&:last-child {
+		margin-right: 0;
+	}
+	&-pic {
+		height: 100px;
+		width: 100%;
+		background-color: #000;
+		margin-bottom: 10px;
+	}
+}
+
+.more-products {
+	text-align: right;
+}
