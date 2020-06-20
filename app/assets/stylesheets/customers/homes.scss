@@ -2,31 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.genre-index {
-	&-wrapper {
-		height: 300px;
-		width: 80%;
-		border: 1px solid #000;
-	}
-
-	&-title {
-		padding: 10px;
-		text-align: center;
-		line-height: 18px;
-		border-bottom: 1px solid #000;
-	}
-
-	&-items {
-		& > ul {
-			margin-right: auto;
-		}
-	}
-
-	&-item {
-		line-height: 40px;
-	}
-}
-
 .main-view {
 	background: image-url('main-view-pic.jpg');
 	background-size: cover;
