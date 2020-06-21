@@ -5,7 +5,7 @@ class Customers::ProductsController < ApplicationController
 
 	def show
 		@product = Product.find(params[:id])
-		@cart_product_quantity = current_customer.cartproducts.new
+		@quantity = current_customer.cart_products.new
 	end
 
 end
