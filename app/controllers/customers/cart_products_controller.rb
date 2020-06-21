@@ -1,5 +1,5 @@
 class Customers::CartProductsController < ApplicationController
-	def indexexit
+	def index
 		@cart_products = CartProduct.where(customer_id: current_customer.id)
 	end
 
@@ -18,13 +18,13 @@ class Customers::CartProductsController < ApplicationController
 	def destroy
 		@cart_product = CartProduct.find(params[:id])
 		@cart_product.destroy
-		render :index
+		redirect_to cart_products_path
 	end
 
 	def empty
-		@cart_products = CartProducts.where(customer_id: current_customer)
-		@cart_products.destroy
-		redirect_to products_path
+		cart_products = CartProduct.where(customer_id: current_customer.id)
+		cart_products.destroy_all
+		redirect_to cart_products_path
 		# render :index
 	end
 
