@@ -6,15 +6,9 @@
 		<div class="row">
 			<div class="product-image"><%= attachment_image_tag(@product, :image_id, :fill, 174, 100, fallback: "no-image-mini.jpg") %></div>
 			<div>
-				<h2>商品タイトル</h2>
-				<p>
-					商品の説明文です。商品の説明文です。商品の説明文です。商品の説明文です。
-					商品の説明文です。商品の説明文です。商品の説明文です。商品の説明文です。
-					商品の説明文です。商品の説明文です。商品の説明文です。商品の説明文です。
-					商品の説明文です。商品の説明文です。商品の説明文です。商品の説明文です。
-					商品の説明文です。商品の説明文です。商品の説明文です。商品の説明文です。
-				</p>
-				<p>¥500(税抜き)</p>
+				<h2><%= @product.name %></h2>
+				<p><%= @product.description %></p>
+				<p>¥<%= @product.price %>(税抜き)</p>
 			</div>
 		</div>
 		<% if customer_signed_in? %>
