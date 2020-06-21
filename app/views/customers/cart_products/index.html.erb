@@ -26,9 +26,14 @@
 					<td><%= f.text_field :quantity %></td>
 					<td><%= f.submit "変更" %></td>
 					<% end %>
+					<td><%= cart_product.subtotal %></td>
 					<td><%= link_to "削除する", cart_product_path(cart_product), method: :delete %></td>
 				</tr>
 				<% end %>
 			</tbody>
 		</table>
+</div>
+<div class="row">
+	<%= link_to "買い物を続ける", products_path %>
+
 </div>
