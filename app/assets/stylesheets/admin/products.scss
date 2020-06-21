@@ -1,3 +1,20 @@
 // Place all the styles related to the admin::products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.products {
+	display: flex;
+}
+
+.product {
+	margin-right: 10px;
+	width: 25%;
+	&:last-child {
+		margin-right: 0;
+	}
+	&-index-image {
+		height: 100px;
+		width: 100%;
+		background-color: #000;
+	}
+}
