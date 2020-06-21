@@ -1,11 +1,11 @@
 class Customers::CartProductsController < ApplicationController
-	def index
+	def indexexit
 		@cart_products = CartProduct.where(customer_id: current_customer.id)
 	end
 
 	def create
-		@product = Products.find(params[:id])
-		cart_product = current_customer.cart_products.new(product_id: @products.id)
+		cart_product = current_customer.cart_products.new(cart_product_params)
+		cart_product.product_id = params[:product_id]
 		cart_product.save
 		redirect_to cart_products_path
 	end
@@ -31,6 +31,6 @@ class Customers::CartProductsController < ApplicationController
 	private
 
 		def cart_product_params
-			params.require(:cart_products).permit(:quantity)
+			params.require(:cart_product).permit(:quantity)
 		end
 end
