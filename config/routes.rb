@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
+   devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+  registrations: 'customers/registrations'
+  }
 
   devise_for :admins, controllers: {
     sessions:      'admin/sessions',
     passwords:     'admin/passwords',
     registrations: 'admin/registrations'
-  }
-  devise_for :customers, controllers: {
-    sessions:      'customers/sessions',
-    passwords:     'customers/passwords',
-    registrations: 'customers/registrations'
   }
 
 
@@ -26,8 +26,8 @@ Rails.application.routes.draw do
     get 'orders/thanks' => 'orders#thanks', as: :orders_thanks
     #顧客情報関連
     resource :customers, only: [:show, :edit, :update]
-    get 'delete_account' => 'customets#delete_account', as: :delete_account
-    patch 'delete_account' => 'customets#invalid', as: :invalid
+    get 'delete_account' => 'customers#delete_account', as: :delete_account
+    patch 'delete_account' => 'customers#invalid', as: :invalid
     #顧客の配送先関連
     resources :destinations, except: [:new, :show]
   end
