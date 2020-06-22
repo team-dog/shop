@@ -1,0 +1,39 @@
+<h1>注文確認画面</h1>
+<div class="table table-bordered">
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+        </tr>
+    </thead>
+    <tbody>
+    <%= @order_products.each do |product| %>
+        <tr>
+            <td><%= product.name %></td>
+            <td><%= product.price %></td>
+            <td><%= product.quantity %></td>
+            <td><%= product.price %>*<%= product.quantity %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</div>
+
+<div class="table border-table">
+<%= @order_products.each do |product| %>
+        <tr>
+            <th>送料</th>
+            <td>800</td>
+        </tr>
+        <tr>
+            <th>商品合計</th>
+            <td><%= product.price %>*<%= product.quantity %>td>
+        </tr>
+        <tr>
+            <th>請求金額</th>
+            <td>800+(<%= product.price %>*<%= product.quantity %>)</td>
+        </tr>
+    <% end %>
+</div>
+
