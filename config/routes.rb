@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :destinations, except: [:new, :show]
   end
 
-  namespace :admin do
+  namespace :admins do
     get 'top' => 'homes#top'
     resources :products, only: [:index,:new,:create,:show,:edit,:update]
     resources :genres, only: [:index,:create,:edit,:update]
