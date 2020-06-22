@@ -27,7 +27,7 @@
 					<td><%= f.submit "変更" %></td>
 					<% end %>
 					<td><%= cart_product.subtotal_price %></td>
-					<% total_price += cart_product.subtotal %>
+					<% total_price += cart_product.subtotal_price %>
 					<td><%= link_to "削除する", cart_product_path(cart_product), method: :delete %></td>
 				</tr>
 				<% end %>
@@ -35,6 +35,7 @@
 		</table>
 </div>
 <div class="row">
+	<%= link_to '情報入力に進む', new_order_path %>
 	<p>合計</p>
 	<%= total_price %>
 </div>
