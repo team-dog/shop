@@ -1,6 +1,5 @@
-class Admin::OrdersController < ApplicationController
+class Admins::OrdersController < ApplicationController
   def index
-    @order_products = Product.all
   end
   def show
   end
