@@ -16,7 +16,7 @@
 			</thead>
 
 			<tbody>
-
+				<% total_price = 0 %>
 				<% @cart_products.each do |cart_product| %>
 				<tr>
 					<td></td>
@@ -26,7 +26,8 @@
 					<td><%= f.text_field :quantity %></td>
 					<td><%= f.submit "変更" %></td>
 					<% end %>
-					<td><%= cart_product.subtotal %></td>
+					<td><%= cart_product.subtotal_price %></td>
+					<% total_price += cart_product.subtotal %>
 					<td><%= link_to "削除する", cart_product_path(cart_product), method: :delete %></td>
 				</tr>
 				<% end %>
@@ -34,6 +35,6 @@
 		</table>
 </div>
 <div class="row">
-	<%= link_to "買い物を続ける", products_path %>
-
+	<p>合計</p>
+	<%= total_price %>
 </div>
