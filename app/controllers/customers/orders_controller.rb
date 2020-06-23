@@ -1,4 +1,5 @@
 class Customers::OrdersController < ApplicationController
+    before_action :authenticate_customer!
 
     def new
         # 注文詳細画面　顧客の住所・登録済みの住所・新規で登録した住所を表示のため記載
