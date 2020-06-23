@@ -23,6 +23,32 @@
 		</div>
 	</nav>
 
+	<% elsif admin_signed_in? %>
+	<nav class="nav">
+		<div class="container">
+			<ul class="nav-items">
+				<li>
+					<%= link_to 'NaganoCake', admins_top_path, class: "nav-logo" %>
+				</li>
+				<li class="nav-item">
+					<%= link_to '商品一覧', admins_products_path, class: "nav-link btn btn-primary" %>
+				</li>
+				<li class="nav-item">
+					<%= link_to '会員一覧', admins_customers_path, class: "nav-link btn btn-primary" %>
+				</li>
+				<li class="nav-item">
+					<%= link_to '注文履歴一覧', admins_orders_path, class: "nav-link btn btn-primary" %>
+				</li>
+				<li class="nav-item">
+					<%= link_to 'ジャンル一覧', admins_genres_path, class: "nav-link btn btn-primary" %>
+				</li>
+				<li class="nav-item">
+					<%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link btn btn-primary" %>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
 	<!-- 未ログイン -->
 	<% else %>
 	<nav class="nav">
