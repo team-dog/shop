@@ -19,7 +19,7 @@ class Customers::OrdersController < ApplicationController
     def confirm
         # 注文商品を全て表示するために記載
         # order_products = Order.products
-        @order_products = current_customer.products.all
+        @orders = current_customer.cart_products.all
         # 商品名と単価
         # @product = Product.where(id: OrderProduct.product_id)
         # 支払い方法・配送先表示のため記載
