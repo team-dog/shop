@@ -1,0 +1,11 @@
+<h2>ジャンル編集</h2>
+
+<%= form_for(@genre, url: admins_genre_path(@genre)) do |f| %>
+	<div class="field row">
+		<%= f.label :name, "ジャンル" %>
+		<%= f.text_field :name %>
+		<%= f.radio_button :is_valid, "true" %><span>有効</span>
+		<%= f.radio_button :is_valid, "false" %><span>無効</span>
+		<%= f.submit "追加" %>
+	</div>
+<% end %>
