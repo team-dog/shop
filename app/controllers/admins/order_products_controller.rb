@@ -1,4 +1,6 @@
 class Admins::OrderProductsController < ApplicationController
+  before_action :authenticate_admin!
+
   # 注文ステータスの更新
   def update
     status = OrderProduct.find(params[:order_id])
@@ -6,7 +8,7 @@ class Admins::OrderProductsController < ApplicationController
     redirect_to admins_order_path
   end
 
-  private 
+  private
     def update_params
         params.require(:order_product).permit(:status)
     end

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    get 'top' => 'homes#top'
+    root 'homes#top'
     resources :products, only: [:index,:new,:create,:show,:edit,:update]
     resources :genres, only: [:index,:create,:edit,:update]
     resources :customers, only: [:index,:show,:edit,:update]

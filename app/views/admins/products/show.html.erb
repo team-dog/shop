@@ -3,7 +3,7 @@
 	<div class="col-xs-9">
 		<div class="row">
 			<h2>商品詳細</h2>
-			<div class="product-image"><%= attachment_image_tag(@product, :image_id, :fill, 174, 100, fallback: "no-image-mini.jpg") %></div>
+			<div class="product-image"><%= attachment_image_tag(@product, :image, :fill, 174, 100, fallback: "no-image-mini.jpg") %></div>
 			<div>
 				<p>商品名</p>
 				<p><%= @product.name %></p>

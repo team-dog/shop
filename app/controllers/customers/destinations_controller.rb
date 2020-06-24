@@ -1,4 +1,5 @@
 class Customers::DestinationsController < ApplicationController
+	before_action :authenticate_customer!
 
 	def index
 		@destinations = Destination.where(customer_id: current_customer.id)
