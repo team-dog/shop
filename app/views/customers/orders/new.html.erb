@@ -1,28 +1,32 @@
 <h1>注文情報入力</h1>
-<%= form_with(model: @order, local: true, url: orders_confirm_path) do |f| %> 
+<%= form_for(@order, url: orders_confirm_path) do |f| %> 
 <div class="pay">
     <h2>支払方法</h2>
-    <%= f.radio_button :payment, 0 %>
+    <%= f.radio_button :payment, "クレジットカード" %>
     <%= f.label :payment, "クレジットカード", {style: "display: inline-block;"} %><br>
-    <%= f.radio_button :payment, 1 %>
+    <%= f.radio_button :payment, "銀行振込" %>
     <%= f.label :payment, "銀行振込", {style: "display: inline-block;"} %>
 </div>
 <div class="shipping">
     <h2>お届け先</h2>
 
-    <%= f.radio_button :address, current_customer.address %>
-    <%= f.label :address, "ご自身の住所", {style: "display: inline-block;"} %>
+    <%= f.radio_button :shipping_address, :1 %>
+    <%= f.label :shipping_address, "ご自身の住所", {style: "display: inline-block;"} %>
     <%= current_customer.address %><br>
+    
+    <%= f.radio_button :shipping_address, :2 %>
+    <%= f.label :shipping_address, "既に登録済み", {style: "display: inline-block;"} %>
+    <%= f.select :select_address, current_customer.destinations.all.map{|destination| destination.address}, {style: "display: block;"} %><br>
+   
+    <%= f.radio_button :shipping_address, :3 %>
+    <%= f.label :shipping_address, "新しいお届け先", {style: "display: inline-block;"} %><br>
+    <%= f.label :shipping_postcode, "郵便番号（ハイフンなし）", {style: "display: inline-block;"} %>
+    <%= f.text_field :shipping_postcode %><br>
+    <%= f.label :shipping_address, "住所", {style: "display: inline-block;"} %>
+    <%= f.text_field :shipping_address %><br>
+    <%= f.label :shipping_name, "宛名", {style: "display: inline-block;"} %>
+    <%= f.text_field :shipping_name %><br>
  
-    <%= f.radio_button :address, @order %>
-    <%= f.label :address, "新しいお届け先", {style: "display: inline-block;"} %><br>
-    <%= f.label :postcode, "郵便番号（ハイフンなし）", {style: "display: inline-block;"} %>
-    <%= f.text_field :postcode %><br>
-    <%= f.label :address, "住所", {style: "display: inline-block;"} %>
-    <%= f.text_field :address %><br>
-    <%= f.label :name, "宛名", {style: "display: inline-block;"} %>
-    <%= f.text_field :name %><br>
-
 </div>
 
 <%= f.submit "確認画面へ", class: "btn btn-primary" %>
