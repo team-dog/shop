@@ -2,7 +2,7 @@ class Customers::CustomersController < ApplicationController
     before_action :authenticate_customer!
 
     def show
-        @customer = Customer.find(params[:id])
+        @customer = Customer.find_by(id: current_customer.id)
     end
 
     def delete_account
@@ -14,7 +14,7 @@ class Customers::CustomersController < ApplicationController
     end
 
     def edit
-        @customer = customer.find(params[id])
+        @customer = Customer.find_by(id: current_customer.id)
     end
 
     def update
