@@ -35,11 +35,20 @@ class Customers::OrdersController < ApplicationController
     def create
         #既に登録済みのデータと新規入力情報
         @order = current_customer.orders.new(order_params)
+        cart_products = current_customer.cart_products.all
+        if @order.save
+            cart_products.each do |cart_product|
+                order_product = OrderProduct.new(order_products_params)
+                order_product.product_id = cart_product.product_id
+                order_product.order_id = @order.id
+                order_product.quantity = cart_product.quantity
+                product = Product.find(cart_product.product_id)
+                order_product.price = product.price
+                order_product.save
+            end
         # if params[:back]
         #     render :new
         # else
-        if @order.save
-            cart_products = current_customer.cart_products.all
             cart_products.destroy_all
             redirect_to orders_thanks_path
         end
@@ -52,6 +61,10 @@ class Customers::OrdersController < ApplicationController
     private
     def order_params
     params.require(:order).permit(:total_price, :status, :shipping_name, :shipping_postcode, :shipping_address, :payment)
+    end
+
+    def order_products_params
+        params.require(:order).permit(:quantity, :price)
     end
 
 end
