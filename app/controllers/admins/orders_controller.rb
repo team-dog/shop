@@ -2,7 +2,7 @@ class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @order_products = OrderProduct.all
+    @orders = Order.all
   end
 
   def show
@@ -20,7 +20,7 @@ class Admins::OrdersController < ApplicationController
     redirect_to admins_order_path
   end
 
-  private 
+  private
     def update_params
         params.require(:order).permit(:status)
     end

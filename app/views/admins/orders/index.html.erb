@@ -1,6 +1,6 @@
 <h1>注文履歴一覧</h1>
 
-<div class="table table-bordered">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>購入日時</th>
@@ -10,14 +10,13 @@
         </tr>
     </thead>
     <tbody>
-    <%= @order_products.each do |order| %>
+    <% @orders.each do |order| %>
         <tr>
-            <td><%= order.created_at %></td>
-            <td><%= order.order_id.cutomer_id %></td>
-            <td><%= order.quantity %></td>
+            <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admins_order_path(order.id) %></td>
+            <td><%= "#{order.customer.family_name}　#{order.customer.first_name}" %></td>
+            <td><%= order.total_quantity %></td>
             <td><%= order.status %></td>
-            
         </tr>
     <% end %>
     </tbody>
-</div>
+</table>
