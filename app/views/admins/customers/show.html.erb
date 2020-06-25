@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-xs-9">
+		<div class="row">
+			<h2><%= "#{@customer.family_name}　#{@customer.first_name}" %>さんの会員詳細</h2>
+			<div>
+				<p>顧客ID</p>
+				<p><%= @customer.id %></p>
+				<p>氏名</p>
+				<p><%= "#{@customer.family_name}　#{@customer.first_name}" %></p>
+				<p>フリガナ</p>
+				<p><%= "#{@customer.family_name_ruby}　#{@customer.first_name_ruby}" %></p>
+				<p>郵便番号</p>
+				<p><%= @customer.postcode %></p>
+				<p>住所</p>
+				<p><%= @customer.address %></p>
+				<p>電話番号</p>
+				<p><%= @customer.tell_number %></p>
+				<p>メールアドレス</p>
+				<p><%= @customer.email %></p>
+			</div>
+			<%= link_to "編集する", edit_admins_customer_path(@customer.id) %>
+		</div>
+	</div>
+</div>

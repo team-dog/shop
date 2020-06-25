@@ -20,13 +20,17 @@
               <%= customer.id %>
             </td>
             <td>
-              <%= customer.family_name customer.first_name %>
+              <%= link_to "#{customer.family_name}#{customer.first_name}", admins_customer_path(customer.id) %>
             </td>
             <td>
               <%= customer.email %>
             </td>
             <td>
-              <%= customer.is_valid %>
+              <% if customer.is_valid == true %>
+              有効
+              <% else %>
+              退会済
+              <% end %>
             </td>
           </tr>
         <% end %>
