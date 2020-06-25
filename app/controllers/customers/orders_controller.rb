@@ -9,63 +9,51 @@ class Customers::OrdersController < ApplicationController
         @order = Order.new
     end
 
-    
-
     def confirm
         # 注文商品を全て表示するために記載
-        
         @orders = current_customer.cart_products.all
-        @order = Order.new(order_create_params)
-        @destination = Destination.where(customer_id: current_customer.id)
-        if params[:order][:shipping_address] == "1"
-            @address = current_customer.address
-        elsif params[:order][:shipping_address] == "2"
-            @address = c
-            @order.shipping_address = Order.
-        # elsif params[:order][:shipping_address] == "3"
-        #     @order.[]
+        @order = Order.new(order_params)
+        if params[:select_radio] == "1"
+            @order.shipping_postcode = current_customer.postcode
+            @order.shipping_address = current_customer.address
+            @order.shipping_name = current_customer.family_name + current_customer.family_name
+            @order.payment = params[:order][:payment]
+        elsif params[:select_radio] == "2"
+            @destination = Destination.find(params[:order][:select_destinations])
+            @order.shipping_postcode = @destination.postcode
+            @order.shipping_address = @destination.address
+            @order.shipping_name = @destination.name
+            @order.payment = params[:order][:payment]
+        elsif params[:select_radio] == "3"
+            @order.shipping_postcode = params[:order][:shipping_postcode]
+            @order.shipping_address = params[:order][:shipping_address]
+            @order.shipping_name = params[:order][:shipping_name]
+            @order.payment = params[:order][:payment]
         end
-        #  if @order.valid?
-        #     render :confirm
-        #  else
-        #     render :new
-        #  end  
-        # @order = Order.find_by(customer_id: current_customer.id)
-        # 商品名と単価
-        # @product = Product.where(id: OrderProduct.product_id)
-        # 支払い方法・配送先表示のため記載
-        @destination = Destination.where(customer_id: current_customer.id)
     end
 
     def create
         #既に登録済みのデータと新規入力情報
-        @order = Order.new(order_create_params)
+        @order = current_customer.orders.new(order_params)
         # if params[:back]
         #     render :new
         # else
-        @order.save
-        redirect_to orders_thanks_path
+        if @order.save
+            cart_products = current_customer.cart_products.all
+            cart_products.destroy_all
+            redirect_to orders_thanks_path
+        end
     # end
     end
 
     def thanks
-        @order = Order.new(order_create_params)
-        if params[:back]
-            render :new
-        else
-            @order.save
-            redirect_to orders_thanks_path
-        end
     end
 
-    def show
+    private
+    def order_params
+    params.require(:order).permit(:total_price, :status, :shipping_name, :shipping_postcode, :shipping_address, :payment)
     end
 
-    private 
-    def order_create_params
-        params.require(:order).permit(:total_price, :status, :shipping_name, :shipping_postcode, :shipping_address,:payment)
-    end
-    
 end
 
 

@@ -50,12 +50,18 @@
 </div>
 
 <div class="order_confirm">
-<%= form_for(@order, url: orders_thanks_path, method: :post) do |f| %>
 
-        <span>支払方法</span><%= f.hidden_field :payment %><%= @order.payment %>
-        <span>お届け先</span><%= f.hidden_field :shipping_address %><%= @order.shipping_address %>
-<%= order = @order.shipping_address %>
-<%= f.submit "詳細入力へ戻る", name: "back" %>
-<%= f.submit "注文を確定する" %>
-<% end %>
+    <span>支払方法</span><%= @order.payment %>
+    <span>お届け先</span><%= @order.shipping_address %>
+    <%= form_with model: @order, url: orders_path , local: true do |f| %>
+        <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
+        <%= f.hidden_field :shipping_postcode, :value => @order.shipping_postcode %>
+        <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
+        <%= f.hidden_field :payment, :value => @order.payment %>
+        <%= f.hidden_field :total_price, :value => billing_amount %>
+
+
+    <%= f.submit "詳細入力へ戻る", name: "back" %>
+    <%= f.submit "注文を確定する" %>
+    <% end %>
 </div>
