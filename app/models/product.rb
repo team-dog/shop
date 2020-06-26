@@ -5,9 +5,10 @@ class Product < ApplicationRecord
 
 	attachment :image
 
-	def tax_price
-		price * 1.1
-	end
+	require 'bigdecimal'
+    def tax_price
+    	(BigDecimal("#{price}") * BigDecimal("1.1")).ceil
+    end
 
 
 

@@ -2,25 +2,23 @@ class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @order_products = OrderProduct.all
+    @orders = Order.all
   end
 
   def show
-    @customer = Order.find(params[:customer_id])
     @order = Order.find(params[:id])
-    @new_order = Order.new
-    @order_product = OrderProduct.new
-    @orders = Order.all
+    @order_products = @order.order_products.all
   end
 
   # 制作ステータス
   def update
-    status = Order.find(params[:order_id])
-    status.update(update_params)
-    redirect_to admins_order_path
+    order = Order.find(params[:id])
+    order.status = params[:order][:status].to_i
+    order.status.update(update_params)
+    redirect_to admins_order_path(order)
   end
 
-  private 
+  private
     def update_params
         params.require(:order).permit(:status)
     end
