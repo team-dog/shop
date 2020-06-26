@@ -1,6 +1,10 @@
 class Customers::OrdersController < ApplicationController
     before_action :authenticate_customer!
 
+    def index
+        @orders = current_customer.orders.all
+    end
+
     def new
         # 注文詳細画面　顧客の住所・登録済みの住所・新規で登録した住所を表示のため記載
         @customer = Order.find_by(customer_id: current_customer.id)
@@ -56,6 +60,11 @@ class Customers::OrdersController < ApplicationController
     end
 
     def thanks
+    end
+
+    def show
+        @order = Order.find(params[:id])
+        @order_products = OrderProduct.where(order_id: @order.id)
     end
 
     private
