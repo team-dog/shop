@@ -9,7 +9,7 @@
 <%= @order.payment %>
 <p>注文ステータス</p>
 <%= form_with model: @order, url: admins_order_path(@order.id), method: :patch, local: true do |f| %>
-    <%= f.select :status, {'入金まち' => 0, '入金確認'=> 1, '製作中'=> 2, '発送準備'=> 3, '発送済み'=> 4} %>
+    <%= f.select :status, {wait: 'wait', confirm: 'confirm', production: 'production', preparation: 'preparation', complete: 'complete'} %>
     <%= f.submit "更新", class: "btn btn-primary" %>
 <% end %>
 </div>
