@@ -1,20 +1,20 @@
 <h1>注文履歴詳細</h1>
 <div class = "show">
-<p1>購入者</p1> 
-<%= link_to @customer.name admin_customer_path(@customer) %>
-<p1>配送先</p1>
-<%= @order.postcode %>
-<%= @order.address %>
-<p1>支払い方法</p1>
+<p>購入者</p>
+<%= link_to "#{@order.customer.family_name} #{@order.customer.first_name}", admins_customer_path(@order.customer_id) %>
+<p>配送先</p>
+<%= "#{@order.shipping_postcode} #{@order.shipping_address} " %>
+<%= @order.shipping_name %>
+<p>支払い方法</p>
 <%= @order.payment %>
-<p1>注文ステータス</p1>
-<%= form_for(@new_product) do |f| %>
-    <%= f.select :status,[["入金まち", 0],["入金確認", 1],["製作中", 2],["発送準備", 3],["発送済み", 4]]%>
+<p>注文ステータス</p>
+<%= form_with model: @order, url: admins_order_path(@order.id), method: :patch, local: true do |f| %>
+    <%= f.select :status, {'入金まち' => 0, '入金確認'=> 1, '製作中'=> 2, '発送準備'=> 3, '発送済み'=> 4} %>
     <%= f.submit "更新", class: "btn btn-primary" %>
 <% end %>
 </div>
 
-<div class = "index table table-bordered">
+<table class = "index table table-bordered">
 <thead>
     <tr>
         <th>商品名</th>
@@ -25,20 +25,20 @@
     </tr>
 </thead>
 <tbody>
-<%= @orders.each do |order| %>
+<% @order_products.each do |order_product| %>
     <tr>
-        <td><%= order.product_id.name %></td>
-        <td><%= order.products.price %></td>
-        <td><%= order.products.quantity %></td>
-        <td><%= order.products.price %>*<%= order.products.quantity %></td>
-<% end %>
+        <td><%= order_product.product.name %></td>
+        <td><%= order_product.tax_price.floor %></td>
+        <td><%= order_product.quantity %></td>
+        <td><%= order_product.subtotal_price %></td>
         <td>
-        <%= form_for(@order_product) do |f| %>
-            <%= f.select :status,[["着手不可", 0],["製作まち", 1],["製作中", 2],["製作完了", 3]　%>
-            <%= f.submit "更新", class: "btn btn-primary", style{"display: inline-block;"} %>
+        <%= form_with model: order_product, url: admins_order_product_path(order_product.id), method: :patch, local: true do |f| %>
+            <%= f.select :status, [["着手不可", 0],["製作まち", 1],["製作中", 2],["製作完了", 3]] %>
+            <%= f.submit "更新", class: "btn btn-primary" %>
         <% end %>
         </td>
+        <% end %>
     </tr>
 </tbody>
 
-</div>
+</table>
