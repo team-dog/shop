@@ -6,9 +6,6 @@ class Customers::OrdersController < ApplicationController
     end
 
     def new
-        # 注文詳細画面　顧客の住所・登録済みの住所・新規で登録した住所を表示のため記載
-        @customer = Order.find_by(customer_id: current_customer.id)
-        @destination = Destination.find_by(customer_id: current_customer.id)
         # 支払い方法入力するため記載
         @order = Order.new
     end
@@ -50,13 +47,9 @@ class Customers::OrdersController < ApplicationController
                 order_product.price = product.price
                 order_product.save
             end
-        # if params[:back]
-        #     render :new
-        # else
             cart_products.destroy_all
             redirect_to orders_thanks_path
         end
-    # end
     end
 
     def thanks
@@ -77,16 +70,3 @@ class Customers::OrdersController < ApplicationController
     end
 
 end
-
-
-# <div class="order_confirm">
-# # newで入力した支払い方法とお届け先を表示
-#         <span>支払方法</span><%= @customer.payment %>
-#         <span>お届け先</span>
-# # 既に登録済みの住所か新しく登録した住所かお届け先を表示
-#         <% if @destination.address.exists? %>
-#             <%= @destination.address %>
-#         <%  elsif @customer.address.exists? %>
-#             <%= @customer.address %>
-#         <% end %>
-# </div>
