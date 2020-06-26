@@ -27,7 +27,7 @@
 						<%= attachment_image_tag(cart_product.product, :image, :fill, 100, 100, fallback: "no-image-mini.jpg") %>
 						<%= cart_product.product.name %>
 					</td>
-					<td>¥<%= cart_product.product.price %></td>
+					<td>¥<%= cart_product.tax_price %></td>
 					<%= form_with model: cart_product, url: cart_product_path(cart_product.id), method: :patch, local: true do |f| %>
 					<td>
 						<%= f.text_field :quantity, class: "quantity-field" %>

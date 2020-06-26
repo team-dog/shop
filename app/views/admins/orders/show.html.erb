@@ -28,7 +28,7 @@
 <% @order_products.each do |order_product| %>
     <tr>
         <td><%= order_product.product.name %></td>
-        <td><%= order_product.tax_price.floor %></td>
+        <td><%= order_product.tax_price %></td>
         <td><%= order_product.quantity %></td>
         <td><%= order_product.subtotal_price %></td>
         <td>

@@ -2,8 +2,10 @@ class OrderProduct < ApplicationRecord
     belongs_to :order
     belongs_to :product
 
+
+    require 'bigdecimal'
     def tax_price
-    	price * 1.1
+    	(BigDecimal("#{price}") * BigDecimal("1.1")).ceil
     end
 
     def subtotal_price
