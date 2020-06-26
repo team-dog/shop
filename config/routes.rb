@@ -21,9 +21,9 @@ Rails.application.routes.draw do
     resources :cart_products, only: [:index, :create, :update, :destroy]
     delete 'cart_products' => 'cart_products#empty', as: :empty
     #顧客の注文関連
-    resources :orders, only: [:index, :new, :create, :show]
     post 'orders/confirm' => 'orders#confirm', as: :orders_confirm
     get 'orders/thanks' => 'orders#thanks', as: :orders_thanks
+    resources :orders, only: [:index, :new, :create, :show]
     #顧客情報関連
     resource :customers, only: [:show, :edit, :update]
     get 'delete_account' => 'customers#delete_account', as: :delete_account
