@@ -9,7 +9,7 @@
 <%= @order.payment %>
 <p>注文ステータス</p>
 <%= form_with model: @order, url: admins_order_path(@order.id), method: :patch, local: true do |f| %>
-    <%= f.select :status, {wait: 'wait', confirm: 'confirm', production: 'production', preparation: 'preparation', complete: 'complete'} %>
+    <%= f.select :status, Order.statuses_i18n.invert %>
     <%= f.submit "更新", class: "btn btn-primary" %>
 <% end %>
 </div>
@@ -32,8 +32,8 @@
         <td><%= order_product.quantity %></td>
         <td><%= order_product.subtotal_price %></td>
         <td>
-        <%= form_with model: order_product, url: admins_order_product_path(order_product.id), method: :patch, local: true do |f| %>
-            <%= f.select :status, [["着手不可", 0],["製作まち", 1],["製作中", 2],["製作完了", 3]] %>
+        <%= form_with model: order_product, url: admins_order_product_path(order_product.id), local: true do |f| %>
+            <%= f.select :status, OrderProduct.statuses_i18n.invert %>
             <%= f.submit "更新", class: "btn btn-primary" %>
         <% end %>
         </td>

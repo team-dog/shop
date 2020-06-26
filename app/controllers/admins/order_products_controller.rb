@@ -5,7 +5,7 @@ class Admins::OrderProductsController < ApplicationController
   def update
     order_product = OrderProduct.find(params[:id])
     order_product.update(update_params)
-    redirect_to admins_order_path
+    redirect_to admins_order_path(order_product.order_id)
   end
 
   private
