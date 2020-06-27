@@ -17,7 +17,7 @@ class Customers::OrdersController < ApplicationController
         if params[:select_radio] == "1"
             @order.shipping_postcode = current_customer.postcode
             @order.shipping_address = current_customer.address
-            @order.shipping_name = current_customer.family_name + current_customer.family_name
+            @order.shipping_name = current_customer.family_name + current_customer.first_name
             @order.payment = params[:order][:payment]
         elsif params[:select_radio] == "2"
             @destination = Destination.find(params[:order][:select_destinations])
