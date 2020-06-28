@@ -1,16 +1,6 @@
 Rails.application.routes.draw do
-   devise_for :customers, controllers: {
-    sessions:      'customers/sessions',
-    passwords:     'customers/passwords',
-  registrations: 'customers/registrations'
-  }
-
-  devise_for :admins, controllers: {
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords',
-    registrations: 'admins/registrations'
-  }
-
+   
+  
 
   scope module: :customers do
     #顧客トップページのルートパス
@@ -40,7 +30,18 @@ Rails.application.routes.draw do
     resources :orders, only: [:index,:show,:update]
     resources :order_products, only: [:update]
   end
+  devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+  registrations: 'customers/registrations'
+  }
 
+  devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  
   get 'search' => 'search#search', as: :search
 
 end
