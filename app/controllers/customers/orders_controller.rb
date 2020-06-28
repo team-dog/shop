@@ -38,6 +38,11 @@ class Customers::OrdersController < ApplicationController
         @order = current_customer.orders.new(order_params)
         cart_products = current_customer.cart_products.all
         if @order.save
+            destination = current_customer.destinations.new(destination_params)
+            destination.postcode = params[:order][:shipping_postcode]
+            destination.address = params[:order][:shipping_address]
+            destination.name = params[:order][:shipping_name]
+            destination.save
             cart_products.each do |cart_product|
                 order_product = OrderProduct.new(order_products_params)
                 order_product.product_id = cart_product.product_id
@@ -61,12 +66,17 @@ class Customers::OrdersController < ApplicationController
     end
 
     private
+
     def order_params
     params.require(:order).permit(:total_price, :status, :shipping_name, :shipping_postcode, :shipping_address, :payment)
     end
 
     def order_products_params
         params.require(:order).permit(:quantity, :price)
+    end
+
+    def destination_params
+        params.require(:destination).permit(:postcode, :address, :name)
     end
 
 end

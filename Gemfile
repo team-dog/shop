@@ -72,3 +72,5 @@ gem "refile-mini_magick"
 gem 'jp_prefecture'
 
 gem 'enum_help'
+
+gem 'paranoia'
