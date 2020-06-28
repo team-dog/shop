@@ -2,19 +2,19 @@ class Admins::CustomersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @customers = Customer.all
+    @customers = Customer.with_deleted.all
   end
 
   def show
-    @customer = Customer.find(params[:id])
+    @customer = Customer.with_deleted.find(params[:id])
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = Customer.with_deleted.find(params[:id])
   end
 
   def update
-    customer = Customer.find(params[:id])
+    customer = Customer.with_deleted.find(params[:id])
     Customer.update(customer_params)
     redirect_to admins_customer_path(customer.id)
   end
