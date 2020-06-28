@@ -18,7 +18,7 @@ class Customers::CustomersController < ApplicationController
     end
 
     def update
-        customer = Customer.find(params[:id])
+        customer = Customer.find_by(id: current_customer.id)
         customer.update(customer_params)
         redirect_to customers_path(customer.id)
     end
