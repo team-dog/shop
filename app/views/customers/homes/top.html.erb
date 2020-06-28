@@ -22,7 +22,9 @@
 				<div class="favorite-products">
 					<% @products.first(4).each do |product| %>
 					<div class="favorite-product">
+						<%= link_to product_path(product.id) do %>
 						<%= attachment_image_tag(product, :image, size: "200x150", fallback: "no-image-mini.jpg", class: "favorite-product-pic") %>
+						<% end %>
 						<p class="favorite-product-title"><%= link_to product.name, product_path(product.id) %></p>
 						<p class="favorite-product-price">¥<%= product.price %></p>
 					</div>
