@@ -9,7 +9,10 @@ class Customers::CustomersController < ApplicationController
     end
 
     def invalid
-        change_column_default :customer, :is_value, from: true, to: false
+        customer = Customer.find_by(id: current_customer.id)
+        if customer.destroy
+            customer.update(is_valid: false)
+        end
         redirect_to root_path
     end
 
@@ -18,13 +21,13 @@ class Customers::CustomersController < ApplicationController
     end
 
     def update
-        customer = Customer.find(params[:id])
+        customer = Customer.find_by(id: current_customer.id)
         customer.update(customer_params)
         redirect_to customers_path(customer.id)
     end
 
     private
     def customer_params
-        params.require(:customer).permit(:family_name, :first_name, :family_name_ruby, :first_name_ruby, :email, :postcode, :address, :tell_number)
+        params.require(:customer).permit(:family_name, :first_name, :family_name_ruby, :first_name_ruby, :email, :postcode, :address, :tell_number, :is_valid)
     end
 end
