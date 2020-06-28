@@ -20,29 +20,17 @@
 
 				<!-- オススメ商品一覧表示 -->
 				<div class="favorite-products">
+					<% @products.first(4).each do |product| %>
 					<div class="favorite-product">
-						<div class="favorite-product-pic"></div>
-						<p class="favorite-product-title">商品名</p>
-						<p class="favorite-product-price">¥0,000</p>
+						<%= attachment_image_tag(product, :image, size: "200x150", fallback: "no-image-mini.jpg", class: "favorite-product-pic") %>
+						<p class="favorite-product-title"><%= product.name %></p>
+						<p class="favorite-product-price">¥<%= product.price %></p>
 					</div>
-					<div class="favorite-product">
-						<div class="favorite-product-pic"></div>
-						<p class="favorite-product-title">商品名</p>
-						<p class="favorite-product-price">¥0,000</p>
-					</div>
-					<div class="favorite-product">
-						<div class="favorite-product-pic"></div>
-						<p class="favorite-product-title">商品名</p>
-						<p class="favorite-product-price">¥0,000</p>
-					</div>
-					<div class="favorite-product">
-						<div class="favorite-product-pic"></div>
-						<p class="favorite-product-title">商品名</p>
-						<p class="favorite-product-price">¥0,000</p>
-					</div>
+					<% end %>
 				</div>
+
 				<div class="more-products">
-					<a href="#">もっと見る></a>
+					<%= link_to 'もっと見る>', products_path %>
 				</div>
 			</div>
 		</div>
