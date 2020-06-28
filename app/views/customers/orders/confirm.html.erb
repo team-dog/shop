@@ -55,8 +55,11 @@
     <span>お届け先</span><%= @order.shipping_address %>
     <%= form_with model: @order, url: orders_path , local: true do |f| %>
         <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
+        <%= hidden_field_tag 'destination[name]', :value => @order.shipping_name %>
         <%= f.hidden_field :shipping_postcode, :value => @order.shipping_postcode %>
+        <%= hidden_field_tag 'destination[postcode]', :value => @order.shipping_postcode %>
         <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
+        <%= hidden_field_tag 'dstination[address]', :value => @order.shipping_address %>
         <%= f.hidden_field :payment, :value => @order.payment %>
         <%= f.hidden_field :total_price, :value => billing_amount %>
 
